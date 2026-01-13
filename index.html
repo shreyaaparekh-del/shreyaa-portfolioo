@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHREYAA PAREKH - Strategic Communications & Brand Architect</title>
+    <!-- Load Tailwind CSS -->
+   <script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['"DM Sans"', 'sans-serif'],
+            },
+            colors: {
+                'netflix-red': '#E50914',
+                'background-dark': '#141414',
+                'surface-card': '#1f1f1f',
+                'text-primary': '#FFFFFF',
+            },
+            spacing: {
+                'hero-height': '90vh',
+            }
+        }
+    }
+}
+</script>
+
+<script>
+function showProfiles() {
+  const gate = document.getElementById('profileGate');
+  document.body.style.overflow = 'hidden';
+
+  gate.style.display = 'flex';
+  requestAnimationFrame(() => {
+    gate.style.opacity = '1';
+    gate.style.pointerEvents = 'auto';
+  });
+}
+
+function enterSite(target) {
+  const gate = document.getElementById('profileGate');
+  gate.style.opacity = '0';
+  gate.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    gate.style.display = 'none';
+    document.body.style.overflow = 'auto';
+
+    if (target) {
+      document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 600);
+}
+
+</script>
+
+    <style>
+/* Netflix profile tiles */
+.profile-card {
+  cursor: pointer;
+  width: 160px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.1);
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 6px;
+  background: #2b2b2b;
+  overflow: hidden;
+  margin: 0 auto 10px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover .profile-avatar {
+  box-shadow:
+    0 0 0 2px white,
+    0 0 30px rgba(255,255,255,0.35);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+/* Desktop only */
+@media (min-width: 640px) {
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+
+        body {
+            background-color: #141414;
+            color: white;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- HERO SECTION STYLES --- */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        /* The Background Visual (ONLY IMAGE KEPT) */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            z-index: 1;
+            filter: brightness(0.7);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.6);
+            pointer-events: none;
+            opacity: 0; 
+            transition: opacity 2s ease-in-out;
+        }
+
+        .hero-text-shadow {
+            text-shadow: 0px 4px 20px rgba(0, 0, 0, 1);
+        }
+
+        /* --- CONTENT ROWS --- */
+        .row-container {
+            padding: 20px 0 40px 4%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .row-container.first-row {
+            margin-top: -100px;
+        }
+
+        .row-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e5e5e5;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+        }
+
+        .content-row {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            padding-right: 4%;
+            padding-bottom: 40px;
+        }
+        .content-row::-webkit-scrollbar { display: none; }
+
+        /* --- CARD STYLES (Typographic / No Image) --- */
+        .card-item {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 12px;
+            transition: transform 0.3s ease-in-out, z-index 0s 0.1s;
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-decoration: none;
+            background-color: #222;
+            aspect-ratio: 16/9;
+            padding: 24px;
+            background: linear-gradient(135deg, #1f1f1f 0%, #141414 100%);
+            border: 1px solid #333;
+        }
+        
+       .card-item:hover {
+    transform: scale(1.15);
+    z-index: 100;
+    transition-delay: 0.1s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+    border-color: #E50914;
+}
+
+.content-row {
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+        /* Typography inside cards */
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .card-subtitle {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #E50914; /* Netflix Red */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: auto; /* Pushes title to bottom or top depending on layout */
+        }
+
+        .match-score {
+            font-size: 0.7rem;
+            color: #46d369; /* Netflix Green */
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Episode Progress Bar */
+        .progress-bar {
+            height: 2px;
+            background: #555;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 20;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #E50914;
+            width: 95%; 
+        }
+
+        .scrolled-header {
+            background-color: rgba(20, 20, 20, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: start;
+            padding-top: 50px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+            display: flex;
+        }
+        .modal-content {
+            background-color: #181818;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-header {
+            background: linear-gradient(to bottom, #141414, #1f1f1f);
+            padding: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .modal-body {
+            padding: 40px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+        .modal-close:hover {
+            background: white;
+            color: black;
+        }
+
+.netflix-white { color: #f5f5f5; }
+.netflix-gray  { color: #b3b3b3; }
+.netflix-dim   { color: #8c8c8c; }
+.netflix-glow  { text-shadow: 0 0 25px rgba(229,9,20,0.7); }
+#profileGate {
+  transition: opacity 0.6s ease;
+}
+
+    </style>
+</head>
+<body class="font-sans no-scrollbar">
+
+<!-- Netflix-style profile gate -->
+<div id="profileGate" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center text-center">
+  <div class="text-center">
+<h2 class="text-gray-300 text-3xl mb-12 tracking-wide">Choose your profile</h2>
+
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-8 place-items-center">
+      
+      <div onclick="enterSite('#experience')" class="profile-card">
+    <div class="profile-avatar">
+<img src="https://media.giphy.com/media/nO7ipz2UeYoM0/giphy.gif">
+</div>
+
+        <div class="profile-name">The Recruiter</div>
+      </div>
+
+<div onclick="enterSite('#achievements')" class="profile-card">
+  <div class="profile-avatar">
+    <img src="https://media.giphy.com/media/1DTBGm5Rfgymk/giphy.gif">
+  </div>
+  <div class="profile-name">Founder</div>
+</div>
+
+      <div onclick="enterSite('#contact')" class="profile-card">
+<div class="profile-avatar">
+  <img src="https://media.giphy.com/media/yATUTIBUOC1Es/giphy.gif">
+</div>
+        <div class="profile-name">The Creator</div>
+      </div>
+
+</div>
+</div>
+</div>
+
+
+    <!-- Header -->
+    <header id="main-nav" class="fixed top-0 w-full z-[1000] transition-colors duration-500 px-6 sm:px-12 py-4 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+        <div class="flex items-center gap-10">
+            <a href="#home" class="text-3xl font-black text-netflix-red tracking-tighter uppercase cursor-pointer">SHREYAA</a>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+                <a href="#achievements" class="hover:text-white transition">Campaigns</a>
+                <a href="#experience" class="hover:text-white transition">Episodes</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-5">
+           <button onclick="showProfiles()" class="flex items-center gap-2 text-white hover:text-netflix-red transition">
+  <div class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center text-xs font-black">
+    SP
+  </div>
+  <span class="text-sm font-bold tracking-widest uppercase">Switch Profiles</span>
+</button>
+
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-container">
+            
+            <!-- MAIN IMAGE: https://giphy.com/embed/oarpGxJ0oGUSOmUS7x/video -->
+           <img id="main-hero-img"
+     src="https://media.giphy.com/media/oarpGxJ0oGUSOmUS7x/giphy.gif"
+     alt="Main Page Visual"
+     class="hero-bg">
+
+            
+            <!-- VIDEO TEASER -->
+<video id="heroVideo" class="hero-video" autoplay muted playsinline loop>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-fast-driving-in-a-futuristic-tunnel-34537-large.mp4" type="video/mp4">
+            </video>
+            
+            <!-- Overlay Gradients -->
+            <div class="absolute inset-0 z-[3] bg-gradient-to-r from-black/90 via-black/30 to-transparent"></div>
+            <div class="absolute inset-0 z-[3] bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+
+            <!-- Content Overlay -->
+            <div class="absolute bottom-32 left-6 sm:left-12 z-10 max-w-2xl">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="bg-netflix-red text-white text-[10px] font-black px-2 py-0.5 rounded-sm shadow-md uppercase tracking-wider">Top Original Content</span>
+                    <span class="text-white font-bold text-sm tracking-tight hero-text-shadow">#1 Brand Architect Today</span>
+                </div>
+                
+                <p class="text-netflix-red font-bold tracking-[0.4em] text-xs mb-3 uppercase hero-text-shadow">Featured Strategist Profile</p>
+                <h1 class="text-6xl sm:text-8xl font-black netflix-white mb-6 hero-text-shadow leading-[0.85] tracking-tighter uppercase">SHREYAA<br>PAREKH</h1>
+                
+                <p class="text-lg sm:text-xl text-gray-200 font-medium mb-10 hero-text-shadow max-w-lg leading-relaxed italic">
+                    "Somehow I manage"                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="document.getElementById('achievements').scrollIntoView({behavior:'smooth'})" class="bg-white text-black px-10 py-3 rounded-sm font-black flex items-center hover:bg-gray-200 transition transform hover:scale-105 active:scale-95">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        Play Successes
+                    </button>
+                    <a href="#experience" class="bg-gray-500/40 backdrop-blur-xl text-white px-10 py-3 rounded-sm font-black flex items-center hover:bg-gray-500/60 transition border border-white/20">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Episodes
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROW 1: SIGNATURE CAMPAIGNS (Typographic Cards) -->
+        <section id="achievements" class="row-container first-row">
+            <h3 class="row-title">Trending Now: Signature Campaigns</h3>
+            <div class="content-row">
+                
+                <a href="https://www.exchange4media.com/advertising-news/tvf-joins-hands-with-mumbai-police-to-address-the-issue-of-triple-riding-95940.html" target="_blank" class="card-item group">
+                    <div class="card-subtitle">w/ Mumbai Police</div>
+                    <div class="card-title">TVF Tripling S2</div>
+                    <div class="match-score">Award Nominated</div>
+                </a>
+
+                <a href="https://www.primevideo.com" target="_blank" class="card-item group">
+                    <div class="card-subtitle">Crisis Management</div>
+                    <div class="card-title">Prime Video</div>
+                    <div class="match-score">Tandav & Family Man</div>
+                </a>
+
+                <a href="https://economictimes.indiatimes.com/industry/media/entertainment/shang-chi-brings-back-audience-to-theatres/articleshow/85958942.cms?from=mdr" target="_blank" class="card-item group">
+                    <div class="card-subtitle">Shang-Chi Launch</div>
+                    <div class="card-title">Marvel India</div>
+                    <div class="match-score">"Missed You, Marvel"</div>
+                </a>
+
+                <a href="https://economictimes.indiatimes.com/small-biz/startups/budget-startup-vista-rooms-creates-a-functional-app-on-instagram/articleshow/49492252.cms?from=mdr" target="_blank" class="card-item group">
+                    <div class="card-subtitle">1st Insta App</div>
+                    <div class="card-title">Vista Rooms</div>
+                    <div class="match-score">Product Innovation</div>
+                </a>
+
+                <a href="https://www.instagram.com/unsobered/?utm_source=ig_web_button_share_sheet&igsh=OHVrNXMybXZ2bjEz#" target="_blank" class="card-item group">
+                    <div class="card-subtitle">New Sip on Block</div>
+                    <div class="card-title">Unsobered IPs</div>
+                    <div class="match-score">1M+ Views</div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ROW 2: CAREER ARC (Typographic Cards) -->
+ <section id="experience" class="px-6 sm:px-12 py-24 bg-background-dark border-t border-white/5">
+
+<h3 class="netflix-dim font-bold tracking-[0.3em] text-sm mb-4 uppercase">Season 1</h3>
+<h2 class="text-4xl sm:text-5xl font-black netflix-white mb-12 uppercase tracking-tighter">
+Episodes: The Career Arc
+</h2>
+
+<div class="space-y-8">
+
+<div class="relative flex items-center gap-6 cursor-pointer">
+
+    <!-- GIF + hover -->
+<div class="relative w-44 h-28 group" onclick="openModal('wrm')">
+        <img src="https://media.giphy.com/media/BoAaI3YDNIbX00BMmW/giphy.gif"
+             class="w-full h-full object-cover rounded-md">
+
+        <div class="absolute inset-0 bg-black/70 flex items-center justify-center text-sm font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">
+            ▶ Click to view
+        </div>
+    </div>
+
+    <!-- Text block -->
+    <div>
+        <p class="text-gray-500 text-sm uppercase">Latest Episode</p>
+        <h3 class="text-xl font-bold">White Rivers Media</h3>
+        <p class="netflix-gray">
+            Trying to build brands with AI before it becomes boring and everyone claims they did it first.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="relative flex items-center gap-6 cursor-pointer group">
+
+<div class="relative w-44 h-28 group" onclick="openModal('unsobered')">
+        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
+             class="w-full h-full object-cover rounded-md">
+
+        <div class="absolute inset-0 bg-black/70 flex items-center justify-center text-sm font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">
+            ▶ Click to view
+        </div>
+    </div>
+
+    <div>
+        <p class="text-gray-400 text-xs uppercase">Episode 2</p>
+        <h3 class="text-xl font-bold">Unsobered</h3>
+        <p class="netflix-gray">What happens when talking about alcohol turns into a full-time job.</p>
+    </div>
+
+</div>
+
+<div class="relative flex items-center gap-6 cursor-pointer group">
+
+    <div class="relative w-44 h-28" onclick="openModal('moes')">
+        <img src="https://media.giphy.com/media/f0sATHPZHuHAq2Wj34/giphy.gif"
+             class="w-full h-full object-cover rounded-md">
+
+        <div class="absolute inset-0 bg-black/70 flex items-center justify-center text-sm font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">
+            ▶ Click to view
+        </div>
+    </div>
+
+    <div>
+        <p class="text-gray-400 text-xs uppercase">Episode 3</p>
+        <h3 class="text-xl font-bold">Moe’s Art</h3>
+        <p class="netflix-gray">Where big shows got launched, marketed, and occasionally saved from setting themselves on fire.</p>
+    </div>
+</div>
+
+
+<div class="relative flex items-center gap-6 cursor-pointer">
+
+<div class="relative w-44 h-28 group" onclick="openModal('hardly')">
+        <img src="https://media.giphy.com/media/zhRA0okWxTGiu78uSk/giphy.gif"
+             class="w-full h-full object-cover rounded-md">
+
+        <div class="absolute inset-0 bg-black/70 flex items-center justify-center text-sm font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">
+            ▶ Click to view
+        </div>
+    </div>
+
+    <div>
+        <p class="text-gray-400 text-xs uppercase">Episode 4</p>
+        <h3 class="text-xl font-bold">Hardly Anonymous</h3>
+        <p class="netflix-gray">The awkward teen years of Indian OTT.</p>
+    </div>
+
+</div>
+<div class="relative flex items-center gap-6 cursor-pointer group">
+
+    <div class="relative w-44 h-28" onclick="openModal('vista')">
+        <img src="https://media.giphy.com/media/3o7TKrWcufhALZvuNO/giphy.gif"
+             class="w-full h-full object-cover rounded-md">
+
+        <div class="absolute inset-0 bg-black/70 flex items-center justify-center text-sm font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">
+            ▶ Click to view
+        </div>
+    </div>
+
+    <div>
+        <p class="text-gray-400 text-xs uppercase">Episode 5</p>
+        <h3 class="text-xl font-bold">Vista Rooms</h3>
+        <p class="netflix-gray">The Instagram experiment.</p>
+    </div>
+    </div>
+
+</div>
+
+</section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-6 sm:px-12 bg-background-dark relative border-t border-white/5">
+            <div class="max-w-4xl">
+                <h2 class="text-netflix-red font-bold tracking-[0.3em] text-sm mb-4 uppercase">The Architect behind the scenes</h2>
+                <h3 class="text-4xl sm:text-5xl font-black netflix-white mb-6 leading-tight uppercase tracking-tighter">Ideation, Structure,<br>and Crisis Navigation.</h3>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    I am a communications and brand strategist with over nine years of experience. I thrive in spaces that demand structure and firm brand building, having led high-stakes campaigns for <strong>Prime Video, Disney India, and TVF</strong>. Whether it's scaling regional audiences for <strong>Unsobered Hindi</strong> or managing global reputation for streaming giants, I bring a thoughtful, timing-first approach to every narrative.
+                </p>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="contact" class="py-32 px-6 text-center bg-gradient-to-t from-black to-background-dark">
+            <h2 class="text-5xl sm:text-7xl font-black mb-8 uppercase tracking-tighter leading-tight">Hire me before I rewatch<br><span class="text-netflix-red font-black tracking-tight uppercase netflix-glow">
+    The Office again.
+</span>
+</h2>
+            <a href="mailto:shreyaa.parekh@gmail.com" class="bg-white text-black px-16 py-5 rounded-sm font-black text-xl hover:scale-110 transition transform inline-block shadow-2xl uppercase tracking-tighter">
+                Get in Touch
+            </a>
+        </section>
+
+<!-- SEASON 1 : OFFICE EPISODES -->
+    </main>
+
+    <!-- Experience Modal Overlay -->
+    <div id="experienceModal" class="modal-overlay" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-header">
+                <span id="modal-period" class="text-xs font-black text-netflix-red uppercase tracking-widest mb-2 block"></span>
+                <h2 id="modal-role" class="text-3xl font-black text-white uppercase tracking-tight leading-none mb-1"></h2>
+                <h3 id="modal-company" class="text-xl text-gray-400 font-medium"></h3>
+            </div>
+            <div class="modal-body">
+<div id="modal-highlights" class="text-gray-300 leading-relaxed text-sm space-y-4"></div>
+                    <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-16 border-t border-white/5 px-12 bg-black text-gray-500 text-xs flex flex-col md:flex-row justify-between items-center tracking-widest font-bold uppercase">
+        <div>&copy; 2026 SHREYAA PAREKH — ARCHITECTING CULTURE</div>
+        <div class="flex space-x-8 mt-4 md:mt-0">
+            <a href="https://www.linkedin.com/in/shreyaa-parekh-b0278251/" class="hover:text-white transition">LINKEDIN</a>
+            <a href="mailto:shreyaa.parekh@gmail.com" class="hover:text-white transition">EMAIL</a>
+        </div>
+    </footer>
+
+    <script>
+        // Data Store (Fully Detailed)
+        const experienceData = {
+            wrm: {
+                role: "Group Head-Strategy",
+                company: "White Rivers Media",
+                period: "OCT 2025 — PRESENT",
+                highlights: [
+  "I’ve been helping shape <strong>Saanse</strong> as an AI-led spiritual brand — figuring out what it should look like, sound like, and stand for. From building the tone and visual style for <em>Shraddha Ka Naya Dwaar</em> and <em>Ancient India</em> to making sure the content works across English and regional audiences, my focus has been on keeping the brand clear, consistent, and meaningful."
+
+                ]
+            },
+            unsobered: {
+                role: "Co-Founder & Creative Strategist",
+                company: "Unsobered (Subsidiary of Moe's Art)",
+                period: "FEB 2023 — OCT 2025",
+                highlights: [
+                    "Built Unsobered into one of India’s more recognisable alco-tainment platforms.",
+                    "Grew the Instagram page from <strong>20.5K to 100K+</strong> organically through hyperlocal, demand-led content.",
+                    "Co-created <em>New Sip on the Block</em>, a discovery-led series that crossed <strong>1M+ views</strong>.",
+                    "Scaled <strong>Unsobered Hindi</strong> from 7.3K to 43.2K in 13 months by leaning into a regional-first lens.",
+                    "Built a dual-platform strategy catering to two very different groups: metro Gen Z/millennials and regional Hindi-first communities.",
+                    "Co-created and produced <em>What the FAQ’s</em>, an autocomplete-style YouTube series featuring homegrown founders.",
+                    "Managed creators and worked closely with Alco-Bev brands on insight-led campaigns."
+                ]
+            },
+            moes: {
+                role: "PR Senior Account Manager",
+                company: "Moe's Art",
+                period: "OCT 2016 — NOV 2022",
+                highlights: [
+                    "Served as Strategic & Ideation agency lead for <strong>Prime Video India</strong> and <strong>Disney India</strong>, managing a 12-member team.",
+                    "Partnered with leadership at WWM, Prime Video, Viu, Disney India, Westland Publications, and PVR on crisis messaging and strategy.",
+                    "Led launch and crisis communication for major titles including <em>Tandav</em>, <em>The Family Man S2</em>, <em>The Boys</em>, and South titles like <em>Soorarai Pottru</em>, <em>Jai Bhim</em>, <em>V</em>, and <em>Putham Pudhu Kaalai</em>.",
+                    "Drove brand-building campaigns for <em>Paatal Lok</em>, <em>Pushpavalli</em>, <em>Bandish Bandits</em>, and other key originals.",
+                    "Built international media relations (US, UK, UAE) to strengthen global visibility for Indian titles.",
+                    "Led strategy and communication for Prime Video’s DTS announcement, reinforcing its “Many Indias” positioning.",
+                    "Launched <strong>Viu India’s</strong> Hyderabad market entry with its first Telugu original <em>Social</em>, backed by a millennial-first regional strategy.",
+                    "Managed press outreach for <strong>Worldwide Media</strong>, including IPs like the Filmfare Awards and Writer’s Conclave.",
+                    "Spearheaded PR/content innovation for <strong>Westland Publications</strong>, collaborating with authors like Amish Tripathi and Anand Neelakantan, and building early new-age formats and community events.",
+                    "Built award-nominated <strong>Mumbai Police × Red FM</strong> public-awareness campaign on triple riding using cultural insight and pop-culture relevance.",
+                    "Developed the India narrative for Marvel’s <em>Shang-Chi</em>, which became the central marketing message for the film.",
+                    "Executed crisis strategy for <em>Tandav</em>, <em>The Family Man 2</em>, and <em>The Forgotten Army</em>, including risk mapping and sentiment management.",
+                    "Designed India-specific PR strategy for global titles such as <em>Reacher</em>, <em>The Boys</em>, <em>The Wheel of Time</em>, <em>The Terminal List</em>, <em>The Summer I Turned Pretty</em>, and <em>Welcome to the Blumhouse</em>."
+                ]
+            },
+            hardly: {
+                role: "PR Specialist",
+                company: "Hardly Anonymous Communications",
+                period: "MAR 2016 — OCT 2020",
+                highlights: [
+                    "Supported <strong>Voot’s</strong> early entry into India’s nascent OTT landscape.",
+                    "Contributed to launch and promotion of shows like <em>Bad Man</em>, <em>Sinskari</em>, <em>Soadies</em>, and <em>Chinese Bhasad</em>.",
+                    "Led targeted publicity campaigns for Hollywood titles at <strong>PVR Pictures</strong>, building localized, insight-driven strategies to drive audience pull.",
+                    "Built strong media relationships with OTT talent like Sumeet Vyas and Rasika Dugal, ensuring seamless coordination and high-impact press interactions."
+                ]
+            },
+            vista: {
+                role: "Strategic Alliances Manager",
+                company: "Vista Rooms",
+                period: "JAN 2015 — MAR 2016",
+                highlights: [
+                    "Co-created <strong>India’s first Instagram app-based booking experience</strong>.",
+                    "Managed partnerships with brands like <strong>Ola Cabs</strong> and <strong>Purplle</strong>.",
+                    "Scouted regional business opportunities across Hubli, Kolhapur, and Solapur."
+                ]
+            }
+        };
+
+        // Modal Logic
+        function openModal(id) {
+            const data = experienceData[id];
+            if(!data) return;
+
+            const modalPeriod = document.getElementById('modal-period');
+            const modalRole = document.getElementById('modal-role');
+            const modalCompany = document.getElementById('modal-company');
+            const modalHighlights = document.getElementById('modal-highlights');
+            const modalElement = document.getElementById('experienceModal');
+
+            if(modalPeriod) modalPeriod.textContent = data.period;
+            if(modalRole) modalRole.textContent = data.role;
+            if(modalCompany) modalCompany.textContent = data.company;
+            
+            if(modalHighlights) {
+modalHighlights.innerHTML = data.highlights.map(item => `<p>${item}</p>`).join('');
+            }
+
+            if(modalElement) {
+                modalElement.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        function closeModal() {
+            const modalElement = document.getElementById('experienceModal');
+            if(modalElement) {
+                modalElement.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (nav) {
+                if (window.scrollY > 80) {
+                    nav.classList.add('scrolled-header');
+                } else {
+                    nav.classList.remove('scrolled-header');
+                }
+            }
+        });
+
+        // Autoplay logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const v = document.getElementById('heroVideo');
+            if(v) {
+                const startVideo = () => {
+                    v.play().then(() => {
+                        v.style.opacity = '1'; 
+                    }).catch(e => {
+                        console.log("Autoplay blocked/File not found.");
+                    });
+                };
+                startVideo();
+                
+                document.body.addEventListener('click', () => {
+                    if(v.paused) startVideo();
+                }, {once: true});
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
